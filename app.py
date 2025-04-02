@@ -183,8 +183,9 @@ pandas_data_analyst = PandasDataAnalyst(
 # Function to generate insights from data
 def generate_insights(data, query):
     insight_prompt = f"""
-    Based on the query "{query}" and the provided data, generate 3-5 key insights that would be valuable to the user. 
-    Focus on trends, patterns, outliers, or any significant observations. Keep each insight concise (1-2 sentences).
+    Basado en la consulta "{query}" y los datos proporcionados, genera de 3 a 5 ideas clave que serían valiosas para el usuario. 
+    Enfócate en tendencias, patrones, valores atípicos o cualquier observación significativa. Mantén cada idea concisa (1-2 oraciones).
+    Responde completamente en español.
     """
     
     # Convert dataframe to JSON for the prompt
@@ -197,7 +198,7 @@ def generate_insights(data, query):
     insights_response = client.chat.completions.create(
         model=model_option,
         messages=[
-            {"role": "system", "content": "You are a senior data analyst focusing on extracting meaningful insights from data."},
+            {"role": "system", "content": "Eres un analista de datos senior especializado en extraer ideas significativas de los datos. Siempre respondes en español."},
             {"role": "user", "content": f"{insight_prompt}\n\nData: {data_sample}"}
         ],
         temperature=0.3,
